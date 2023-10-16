@@ -18,7 +18,7 @@ function ButtonTwitter({ children, setActionTwitter }) {
         onClick={() => handleClick()}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
-        className="bg-[#179CF0] p-6 flex items-center  text-[18px] text-white font-semibold hover:bg-transparent"
+        className="bg-[#179CF0] p-2 md:p-6 flex items-center text-[14px] md:text-[18px] text-white font-semibold hover:bg-transparent"
         icon={<FaTwitter style={{ color: hover ? "#179CF0" : "" }} className="text-white w-6 h-6" />}
       >
         Twitter {children}

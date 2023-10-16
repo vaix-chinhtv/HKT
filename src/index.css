@@ -7,10 +7,10 @@
 
 @layer components {
   .title {
-    @apply text-[40px] font-semibold text-white
+    @apply  text-[20px] md:text-[40px] font-semibold text-white
   }
   .heading {
-    @apply text-[20px] font-medium mb-3 block text-white
+    @apply text-[16px] md:text-[20px] font-medium mb-2 md:mb-3 block text-white
   }
   .container {
     @apply max-w-screen-xl mx-auto mt-5
@@ -26,10 +26,10 @@
 @layer base {
   html {
     width: 100%;
-    height: auto;
+    height: 100vh;
     background-image: url("/src/asset/img/background.png");
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: cover;
     background-attachment: fixed;
   }
   @layer base {
@@ -46,10 +46,10 @@
     @apply text-[18px]
   }
   .ant-segmented-item {
-    @apply p-2 px-10
+    @apply px-0 md:p-2 md:px-10
   }
   .ant-segmented-item-label {
-  @apply text-[18px] font-semibold
+  @apply text-[14px] md:text-[18px] font-semibold
   }
   .ant-segmented-item.ant-segmented-item-selected {
   @apply bg-[#A6FF96]
@@ -58,7 +58,10 @@
   @apply leading-10
   }
   .ant-input-group-addon {
-    @apply !text-[20px]
+    @apply !text-[14px] md:!text-[20px]
+  }
+  .ant-input {
+    @apply text-[14px] md:text-[18px]
   }
   .ant-btn-primary:hover {
     @apply bg-red-600 text-red-600
@@ -67,11 +70,14 @@
     @apply !text-white
   }
   .ant-input {
-    @apply px-2 leading-[50px]
+    @apply px-2 leading-9 md:leading-[50px]
   }
   .ant-select-arrow {
-    @apply !text-white !text-[20px]
+    @apply !text-white text-[16px] md:!text-[20px]
   }
-  /* .ant-select-selection-search { // background of select
-    background-color: green;
-  } */
+  .ant-select-item-option-selected {
+    @apply !bg-[#FD8D14]
+  }
+ .ant-select-item-option-content {
+ @apply text-[14px] md:text-[18px]
+ }

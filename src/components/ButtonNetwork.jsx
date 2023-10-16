@@ -18,7 +18,7 @@ function ButtonNetwork({ children, setActiveTemplate }) {
   return (
     <Button
       onClick={() => handleClick()}
-      className="bg-[#FD8D14] p-6 flex items-center  text-[18px] text-white font-semibold hover:bg-transparent"
+      className="bg-[#FD8D14] p-2 md:p-6 flex items-center text-[14px] md:text-[18px] text-white font-semibold hover:bg-transparent"
     >
       {children}
     </Button>

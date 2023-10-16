@@ -34,10 +34,8 @@ root.render(
           Select: {
             colorBgContainer: "transparent",
             colorText: "white",
-            colorBgElevated: "#DFA878",
+            colorBgElevated: "rgba(14, 33, 160, 0.6)",
             colorTextPlaceholder: "#DFA878", //
-            colorIcon: "white",
-            colorIconHover: "white",
           },
         },
       }}

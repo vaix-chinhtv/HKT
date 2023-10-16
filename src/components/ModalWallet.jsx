@@ -1,14 +1,10 @@
 import { useEffect } from "react";
-import { useWallet, useAllWallets, useContract } from "useink";
-// import metadata from "./contract-metadata.json";
-import axios from "axios";
-// import { callApiConnect } from "./callApi";
-
-// de vao file .env
-const CONTRACT_ADDRESS = "5CDveQs6omBkWyVXYiZZeCFkpUHWVoSWxhgEREfikvRV7Dxm";
+import { useWallet, useAllWallets } from "useink";
+import { routes } from "../routes";
+import { hocApiPost } from "../services/api-connect-wallet";
 
 export const ModalWallet = ({ setIsModal, setAccount }) => {
-  const { account, connect, accounts } = useWallet();
+  const { account, connect } = useWallet();
   const wallets = useAllWallets();
   //   const contract = useContract(CONTRACT_ADDRESS, metadata);
 
@@ -23,7 +19,8 @@ export const ModalWallet = ({ setIsModal, setAccount }) => {
         wallet_name: account?.name,
       };
 
-      (async () => {})();
+      const walletRegister = hocApiPost(routes.authentication.walletRegister, body)();
+      const walletLogin = hocApiPost(routes.authentication.walletLogin, body)();
     }
   }, [account?.address]);
 

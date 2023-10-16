@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { Input, Select } from "antd";
 import { Aleph, Phala } from "../../asset/img";
 
@@ -24,27 +24,59 @@ export const Tokens = [
   },
 ];
 
-function TemplateWeb3({ title, label }) {
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
+function TemplateWeb3({ title, label, setTokenHolder, setTransactionActivity }) {
+  const Mapping = {
+    TokenHolder: setTokenHolder,
+    TransactionActivity: setTransactionActivity,
+  };
+
+  const handleChangeNetwork = (value) => {
+    Mapping[title]((prev) => {
+      return {
+        ...prev,
+        network: value,
+      };
+    });
+  };
+
+  const handleChangeToken = (value) => {
+    Mapping[title]((prev) => {
+      return {
+        ...prev,
+        categoryToken: value,
+      };
+    });
+  };
+
+  const handleAmount = (e) => {
+    Mapping[title]((prev) => {
+      return {
+        ...prev,
+        minimumAmount: e.target.value,
+      };
+    });
   };
 
   return (
-    <div className="border-2 rounded-lg py-4 px-6 mb-4">
-      <h1 className="text-[24px] font-semibold text-white">{title}</h1>
-      <div className="flex items-start justify-between gap-10">
+    <div className="border-[1px] md:border-2 rounded-lg p-2 md:py-4 md:px-6 mb-4">
+      <h1 className="text-[16px] md:text-[24px] font-semibold text-white">{title}</h1>
+      <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10">
         <div className="flex flex-col w-full">
           <label className="heading">NetWork</label>
           <Select
-            className="w-full !h-[60px] !text-[130px] placeholder:text[20px]"
+            className="w-full !h-[52px] !text-[130px] placeholder:text[20px]"
             size="large"
             defaultValue="Phala"
-            onChange={handleChange}
+            onChange={handleChangeNetwork}
           >
             {NetWorks.map((item) => (
               <Select.Option key={item.network} value={item.network} label={item.network}>
-                <div className="text-[18px] flex items-center">
-                  <img className="w-[40px] h-[40px] rounded-full mr-2" src={item.icon} alt="icon" />
+                <div className="text-[14px] md:text-[18px] flex items-center">
+                  <img
+                    className="w-[24px] h-[24px] md:w-[40px] md:h-[40px] rounded-full mr-2"
+                    src={item.icon}
+                    alt="icon"
+                  />
                   <p>{item.network}</p>
                 </div>
               </Select.Option>
@@ -54,15 +86,19 @@ function TemplateWeb3({ title, label }) {
         <div className="flex flex-col  w-full">
           <label className="heading">Token</label>
           <Select
-            className="w-full !h-[60px] !text-[130px] placeholder:text[20px]"
+            className="w-full !h-[52px] !text-[130px] placeholder:text[20px]"
             size="large"
             defaultValue="PHA"
-            onChange={handleChange}
+            onChange={handleChangeToken}
           >
             {Tokens.map((item) => (
               <Select.Option key={item.token} value={item.network} label={item.network}>
-                <div className="text-[18px] flex items-center">
-                  <img className="w-[40px] h-[40px] rounded-full mr-2" src={item.icon} alt="icon" />
+                <div className="text-[14px] md:text-[18px] flex items-center">
+                  <img
+                    className="w-[24px] h-[24px] md:w-[40px] md:h-[40px] rounded-full mr-2"
+                    src={item.icon}
+                    alt="icon"
+                  />
                   <p>{item.token}</p>
                 </div>
               </Select.Option>
@@ -71,7 +107,7 @@ function TemplateWeb3({ title, label }) {
         </div>
         <div className="w-full">
           <label className="heading">{label}</label>
-          <Input type="number" placeholder="100" />
+          <Input onChange={(e) => handleAmount(e)} type="number" placeholder="100" className="placeholder:text-white" />
         </div>
       </div>
     </div>
