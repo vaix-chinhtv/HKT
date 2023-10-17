@@ -20,7 +20,7 @@ function Tabs() {
     Quest: <Quest setValue={setValue} setValueQuest={setValueQuest} />,
     Reward: <Reward setValue={setValue} setValueReward={setValueReward} />,
     Deposit: <Deposit setValue={setValue} amount={valueReward?.totalReward} />,
-    Leaderboard: <Leaderboard />,
+    Leaderboard: <Leaderboard startDate={valueSetup?.startDate} endDate={valueSetup?.endDate} />,
   };
   return (
     <>

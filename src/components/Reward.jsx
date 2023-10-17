@@ -26,26 +26,8 @@ function Reward({ setValue, setValueReward }) {
     <div className="px-2 md:px-0">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-10">
         <div className="w-full">
-          <label className="heading">Reward Type</label>
-          <Select
-            className="w-full !h-[54px]"
-            size="large"
-            defaultValue="Token"
-            onChange={setCategoryToken}
-            options={[
-              { value: "Token", label: "Token" },
-              { value: "NFT", label: "NFT" },
-            ]}
-          />
-        </div>
-        <div className="w-full">
           <label className="heading">Network</label>
-          <Select
-            className="w-full !h-[54px] placeholder:text[20px]"
-            size="large"
-            defaultValue="Phala"
-            onChange={setNetwork}
-          >
+          <Select className="w-full h-[40px] md:!h-[54px]" size="large" defaultValue="Phala" onChange={setNetwork}>
             {NetWorks.map((item) => (
               <Select.Option key={item.network} value={item.network} label={item.network}>
                 <div className="text-[14px] md:text-[18px] flex items-center">
@@ -61,13 +43,22 @@ function Reward({ setValue, setValueReward }) {
           </Select>
         </div>
         <div className="w-full">
-          <label className="heading">Category Token</label>
+          <label className="heading">Reward Type</label>
           <Select
-            className="w-full !h-[54px] placeholder:text[20px]"
-            size="large"
-            defaultValue="PHA"
+            className="w-full h-[40px] md:!h-[54px]"
+            size="middle"
+            defaultValue="Token"
             onChange={setCategoryToken}
-          >
+            options={[
+              { value: "Token", label: "Token" },
+              { value: "NFT", label: "NFT" },
+            ]}
+          />
+        </div>
+
+        <div className="w-full">
+          <label className="heading">Category Token</label>
+          <Select className="w-full h-[40px] md:!h-[54px]" size="large" defaultValue="PHA" onChange={setCategoryToken}>
             {Tokens.map((item) => (
               <Select.Option key={item.token} value={item.network} label={item.network}>
                 <div className="text-[14px] md:text-[18px] flex items-center">
@@ -113,7 +104,7 @@ function Reward({ setValue, setValueReward }) {
       </div>
       <button
         onClick={handleNext}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded relative left-[50%] -translate-x-[50%] mt-8 text-[20px]"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-medium md:font-bold py-1 px-3 md:py-3 md:px-8 rounded relative left-[50%] -translate-x-[50%] mt-8 text-[16px] md:text-[20px]"
       >
         Next
       </button>

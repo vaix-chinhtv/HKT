@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { Input, Select } from "antd";
 import { Aleph, Phala } from "../../asset/img";
+import { FaWindowClose } from "react-icons/fa";
 
 export const NetWorks = [
   {
@@ -24,7 +24,7 @@ export const Tokens = [
   },
 ];
 
-function TemplateWeb3({ title, label, setTokenHolder, setTransactionActivity }) {
+function TemplateWeb3({ title, label, setTokenHolder, setTransactionActivity, setActiveTemplate }) {
   const Mapping = {
     TokenHolder: setTokenHolder,
     TransactionActivity: setTransactionActivity,
@@ -58,13 +58,13 @@ function TemplateWeb3({ title, label, setTokenHolder, setTransactionActivity }) 
   };
 
   return (
-    <div className="border-[1px] md:border-2 rounded-lg p-2 md:py-4 md:px-6 mb-4">
+    <div className="borderBlue rounded-lg p-2 md:py-4 md:px-6 mb-4 relative">
       <h1 className="text-[16px] md:text-[24px] font-semibold text-white">{title}</h1>
       <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-10">
         <div className="flex flex-col w-full">
           <label className="heading">NetWork</label>
           <Select
-            className="w-full !h-[52px] !text-[130px] placeholder:text[20px]"
+            className="w-full h-[40px] md:!h-[54px] !text-[130px] placeholder:text[20px]"
             size="large"
             defaultValue="Phala"
             onChange={handleChangeNetwork}
@@ -86,7 +86,7 @@ function TemplateWeb3({ title, label, setTokenHolder, setTransactionActivity }) 
         <div className="flex flex-col  w-full">
           <label className="heading">Token</label>
           <Select
-            className="w-full !h-[52px] !text-[130px] placeholder:text[20px]"
+            className="w-full h-[40px] md:!h-[54px] !text-[130px] placeholder:text[20px]"
             size="large"
             defaultValue="PHA"
             onChange={handleChangeToken}
@@ -109,6 +109,12 @@ function TemplateWeb3({ title, label, setTokenHolder, setTransactionActivity }) 
           <label className="heading">{label}</label>
           <Input onChange={(e) => handleAmount(e)} type="number" placeholder="100" className="placeholder:text-white" />
         </div>
+      </div>
+      <div
+        onClick={() => setActiveTemplate((prev) => ({ ...prev, [title]: !prev[title] }))}
+        className="absolute top-4 right-4 z-10"
+      >
+        <FaWindowClose className="w-[40px] h-[40px] text-white cursor-pointer hover:text-yellow-300 active:opacity-40" />
       </div>
     </div>
   );

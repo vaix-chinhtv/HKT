@@ -4,14 +4,14 @@ import App from "./App";
 import { ConfigProvider } from "antd";
 import { UseInkProvider } from "useink";
 
-import { RococoContractsTestnet, ShibuyaTestnet } from "useink/chains";
+import { AlephTestnet, PhalaTestnet } from "useink/chains";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <UseInkProvider
     config={{
       dappName: "Flipper",
-      chains: [RococoContractsTestnet, ShibuyaTestnet],
+      chains: [AlephTestnet, PhalaTestnet],
     }}
   >
     <ConfigProvider

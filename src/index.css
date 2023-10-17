@@ -21,6 +21,9 @@
   .btnGradient2 {
     @apply bg-gradient-to-r from-violet-500 to-fuchsia-500
   }
+  .borderBlue {
+    @apply border-[1px]  border-[#279EFF]
+  }
 }
 
 @layer base {

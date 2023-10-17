@@ -1,5 +1,5 @@
 import ButtonTwitter from "./ButtonTwitter";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Follow from "./Twitter/Follow";
 import Retweet from "./Twitter/Retweet";
 import Like from "./Twitter/Like";
@@ -11,6 +11,7 @@ const ActiosTwitter = ["Follow", "Retweet", "Like", "Hashtag"];
 const ActionWeb3 = ["Token Holder", "Transaction Activity"];
 
 function Quest({ setValue, setValueQuest }) {
+  const countRef = useRef(1);
   const [activeTwitter, setActionTwitter] = useState({
     Follow: false,
     Retweet: false,
@@ -20,8 +21,10 @@ function Quest({ setValue, setValueQuest }) {
 
   const [activeTemplate, setActiveTemplate] = useState({
     TokenHolder: false,
-    Transaction: false,
+    TransactionActivity: false,
   });
+
+  console.log({ activeTemplate });
 
   const [follow, setFollow] = useState("");
   const [retweet, setRetweet] = useState("");
@@ -62,24 +65,30 @@ function Quest({ setValue, setValueQuest }) {
         })}
         {ActionWeb3.map((item, index) => {
           return (
-            <ButtonNetwork key={index} setActiveTemplate={setActiveTemplate}>
+            <ButtonNetwork countRef={countRef} key={index} setActiveTemplate={setActiveTemplate}>
               {item}
             </ButtonNetwork>
           );
         })}
       </div>
       <div className="px-2 md:px-0">
-        {activeTwitter.Follow ? <Follow setFollow={setFollow} /> : ""}
-        {activeTwitter.Retweet ? <Retweet setRetweet={setRetweet} /> : ""}
-        {activeTwitter.Like ? <Like setLike={setLike} /> : ""}
-        {activeTwitter.Hashtag ? <HashTag setHashtag={setHashtag} /> : ""}
+        {activeTwitter.Follow ? <Follow setFollow={setFollow} setActionTwitter={setActionTwitter} /> : ""}
+        {activeTwitter.Retweet ? <Retweet setRetweet={setRetweet} setActionTwitter={setActionTwitter} /> : ""}
+        {activeTwitter.Like ? <Like setLike={setLike} setActionTwitter={setActionTwitter} /> : ""}
+        {activeTwitter.Hashtag ? <HashTag setHashtag={setHashtag} setActionTwitter={setActionTwitter} /> : ""}
         {activeTemplate.TokenHolder ? (
-          <TemplateWeb3 setTokenHolder={setTokenHolder} title="TokenHolder" label="Minimum amount of tokens held" />
+          <TemplateWeb3
+            setActiveTemplate={setActiveTemplate}
+            setTokenHolder={setTokenHolder}
+            title="TokenHolder"
+            label="Minimum amount of tokens held"
+          />
         ) : (
           ""
         )}
-        {activeTemplate.Transaction ? (
+        {activeTemplate.TransactionActivity ? (
           <TemplateWeb3
+            setActiveTemplate={setActiveTemplate}
             setTransactionActivity={setTransactionActivity}
             title="TransactionActivity"
             label="Minimum number of transactions"

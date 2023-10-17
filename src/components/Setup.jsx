@@ -8,22 +8,22 @@ function Setup({ setValue, setValueSetup }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const handleStartDate = (date, dateString) => {
-    setStartDate(dateString);
+  const handleStartDate = (date) => {
+    setStartDate(date.$d);
   };
 
-  const handleEndDate = (date, dateString) => {
-    setEndDate(dateString);
+  const handleEndDate = (date) => {
+    setEndDate(date.$d);
   };
 
   const handleNext = () => {
-    setValue("Quest");
     setValueSetup({
       title,
       description,
-      start_date: startDate,
-      end_date: endDate,
+      startDate,
+      endDate,
     });
+    setValue("Quest");
   };
 
   return (
@@ -34,6 +34,7 @@ function Setup({ setValue, setValueSetup }) {
             Title
           </label>
           <Input
+            required={true}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="!leading-9 md:leading-[50px] placeholder:text-[18px] text-[18px]"

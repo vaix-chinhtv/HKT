@@ -1,19 +1,24 @@
-import React from "react";
 import { Button } from "antd";
 
 const Map = {
   "Token Holder": "TokenHolder",
-  "Transaction Activity": "Transaction",
+  "Transaction Activity": "TransactionActivity",
 };
 
-function ButtonNetwork({ children, setActiveTemplate }) {
+function ButtonNetwork({ children, setActiveTemplate, countRef }) {
   const handleClick = () => {
+    const scrollHeight = 500 * countRef.current;
+    window.scrollTo({
+      top: scrollHeight,
+      behavior: "smooth",
+    });
     setActiveTemplate((prev) => {
       return {
         ...prev,
         [Map[children]]: true,
       };
     });
+    countRef.current = 2;
   };
   return (
     <Button

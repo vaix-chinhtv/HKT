@@ -6,7 +6,6 @@ import { hocApiPost } from "../services/api-connect-wallet";
 export const ModalWallet = ({ setIsModal, setAccount }) => {
   const { account, connect } = useWallet();
   const wallets = useAllWallets();
-  //   const contract = useContract(CONTRACT_ADDRESS, metadata);
 
   useEffect(() => {
     if (account?.address) {
